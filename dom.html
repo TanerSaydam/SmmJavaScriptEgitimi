@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>DOM | Document Object Model</title>    
+    <style>
+        .head{ 
+            /* class selector */            
+        }
+
+        h2{
+            /* name selector */
+        }
+
+        #title{
+            /* id selector */
+        }
+
+        div h2 p{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM | Document Object Model</h1>
+    
+<!-- 
+    <h2 id="titleHead" class="head form-control bold"></h2>
+    <h2 id="title1" class="head">ads</h2>
+    <h2 id="title1" class="head">asd</h2>
+    <h2 id="title1" class="head">asd</h2>
+    <h2 id="title1" class="head">asd</h2>
+    <h2 id="title1" class="head">asd</h2> -->
+
+    <!-- <div>
+        <h2>
+            <p class="test" style="color:red">Lorem.</p>
+            <p class="test" style="color:red">Lorem.</p>
+            <p class="test" style="color:red">Lorem.</p>
+            <p class="test" style="color:red">Lorem.</p>
+            <p class="test" style="color:red">Lorem.</p>
+            <p class="test" style="color:red">Lorem.</p>
+        </h2>
+    </div> -->
+
+    <input id="search" required minlength="10" autocomplete="off" onkeyup="console.log(event)" placeholder="Aranacak değer...">
+    <button id="btn">Input Event'ini Yakala</button>
+
+    <script>
+        //document.getElementById("title1").innerHTML = "<strong>Merhaba Dünya!</strong>";
+        // document.getElementById("title2").innerText = "<strong>Merhaba Dünya!</strong>";
+
+        // let h2Element = document.getElementById("title1");
+        // h2Element.style.backgroundColor = "black";
+        // h2Element.style.color = "white";
+
+        // //h2Element.className = "form-control-2"
+        // h2Element.classList.add("new-class");
+        // try{
+        //     h2Element.calassList.remove("form-control2");
+        // console.log(h2Element.classList);
+        // }
+        // catch(ex){
+        //     console.error(ex.status(500))
+        // }
+
+        //document.querySelector("div h2 p").innerHTML = "Text!";
+
+        // console.log(document.getElementsByClassName("test")[0].style.color = "blue");
+
+        // for (let x = 0; x < 6; x++) {
+        //     document.getElementsByClassName("test")[x].style.color = "blue"
+            
+            
+        // }
+
+        // console.log(document.getElementsByTagName("p"))
+
+        let inputElement = document.getElementById("search");
+        let btnElement = document.getElementById("btn");
+        
+        btnElement.onclick = function(){
+           console.log(inputElement);
+        }
+    </script>
+</body>
+</html>

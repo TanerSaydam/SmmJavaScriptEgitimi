@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>DOM Example 3</title>
+</head>
+<body>
+    <h1>DOM Example 3</h1>
+    <div id="fileDiv">        
+        <button onclick="createElements()">+</button>
+    </div>
+
+    <button onclick="catchAllFileInput()">File Dosyalarını Yakala</button>
+
+    <script>
+        btnElement = document.querySelector("button");
+        divElement = document.getElementById("fileDiv");
+
+
+        function catchAllFileInput(){
+            // console.log(document.querySelectorAll("input[type='file']"))
+            console.log(document.getElementsByClassName("file-input"))
+        }
+
+
+        function createElements(){
+            let fileElement = document.createElement("input");
+            fileElement.type = "file";
+            fileElement.className = "file-input"
+
+            // let buttonElement = document.createElement("button");
+            // buttonElement.innerText = "+";
+            // //buttonElement.onclick = createElements;
+            // buttonElement.addEventListener("click", createElements);
+                
+
+            let brElement = document.createElement("br");
+
+
+            divElement.appendChild(brElement);
+            divElement.appendChild(fileElement);
+            //divElement.appendChild(buttonElement);
+            //divElement.append(fileElement, buttonElement);
+        }
+
+        // btnElement.onclick = function(){
+            
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>DOM Example 2</title>
+    <style>
+       .container{
+        padding: 20px;
+       }
+
+       input{
+         width: 100%;
+         border: 1px solid;
+         border-radius: 10px;
+         font-size: 22px;
+         padding-left: 15px;
+       }
+
+       div.invalid input, div.invalid input:focus{
+        border: 1px solid red !important;       
+        outline: none; 
+       }
+       div.invalid label{
+        color: red;
+       }
+
+       div.invalid .is-invalid{
+        display: block;
+       }
+
+
+       .mt{
+        margin-top: 5px;
+       }
+
+       button{
+        width: 100%;
+        border-radius: 20px;
+        background-color: blue;
+        color: white;
+        font-size: 22px;
+       }
+
+       .is-invalid{
+        font-size: 20px;
+        color: red;
+        display: none;
+       }
+    </style>    
+</head>
+<body>
+    <div class="container">
+    <h1>DOM Example 2</h1>
+    
+    <div>
+    <div id="inputDiv">
+        <label for="name">Ad Soyad</label>
+        <input        
+            type="text"
+            autocomplete="off" 
+            id="name" 
+            required 
+            minlength="3" 
+            onkeyup="checkIntputValid(event)"
+            >
+        <div class="is-invalid">
+            Ad soyad kısmı en az 10 karakter olmalıdır
+        </div>
+    </div>
+    
+    <div class="mt">
+        <button onclick="save()" id="saveBtn" disabled="true">
+            Kaydet
+        </button>
+    </div>
+
+    <hr>
+    <ul id="nameList">
+    </ul>
+
+    <script>
+        //let names = [];
+        
+        function save(){
+           let name = document.getElementById("name").value;
+
+           names.push(name);
+
+           let ulListElement = document.getElementById("nameList");
+        
+           let liElement = document.createElement("li");
+           liElement.innerText = name;
+
+           ulListElement.appendChild(liElement);
+           //ulListElement.append(liElement,liElement,liElement);
+
+        //Text ile listeye elemanı ekleme
+        //    let text = "";
+
+        //    names.forEach(element=> {
+        //     text += "<li>" + element + "</li>"
+        //    });
+
+        //    console.log(text);
+           
+        //    ulListElement.innerHTML = text;
+        }
+
+        function checkIntputValid(event){
+            let isValid = event.target.validity.valid;
+                        
+            if(isValid){
+                document.getElementById("inputDiv").classList.remove("invalid");
+                document.getElementById("saveBtn").removeAttribute("disabled");
+            }else{
+                document.getElementById("inputDiv").classList.add("invalid");
+                document.getElementById("saveBtn").setAttribute("disabled","true");
+            }
+        }
+    </script>
+</div>
+</div>
+   
+</body>
+</html>

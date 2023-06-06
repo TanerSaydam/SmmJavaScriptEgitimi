@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <title>Array Method</title>
+</head>
+<body>
+    <h1>Array Method</h1>
+    <ul>
+        <li>filter()</li>
+        <li>map()</li>
+    </ul>
+
+    <script>
+
+function myFunciton(){
+
+}
+
+        class Car{ //sınıf
+            constructor(name,model,brand){
+                this.name = name;
+                this.model = model;
+                this.brand = brand;
+                this.isActive = true;
+                this.price = 0;
+            }            
+        }
+
+        const cars = [
+            new Car("Fiat1",2020,"Fiat1"), //nesne
+            new Car("Fiat2",2021,"Fiat2"),
+            new Car("Fiat3",2022,"Fiat3"),
+            new Car("Fiat4",2023,"Fiat4"),
+            new Car("Fiat5",2024,"Fiat5"),
+            new Car("Fiat6",2025,"Fiat6"),
+            new Car("Fiat7",2026,"Fiat7"),
+        ]
+
+        console.log(
+            cars
+            .filter((p)=> p.name.toLowerCase()
+            .includes(("fiat")
+            .toLowerCase())));
+
+        let sayilar = [1,2,3,4,5];
+
+        // let ikiKatSayilar = sayilar.map(function(sayi){
+        //     return <li>sayi</li>
+        // });
+
+
+        //let ikiKatSayilar = sayilar.map(sayi => sayi * 2);
+
+        //console.log(ikiKatSayilar);
+
+        let newCars = cars.map(car =>  {
+            return (car.price + 100) * 1.18
+        });
+
+        console.log(newCars);
+
+
+
+    </script>
+</body>
+</html>
