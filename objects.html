@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <title>Objects</title>
+</head>
+<body>
+    <h1>Objects</h1>
+    <script>
+        // const car = {
+        //     name: "",
+        //     model: 0,
+        //     color: "",
+        //     weight: ""
+        // }
+
+        // car.name = "Fiat";
+        // car.model = 5000;
+        // car.weight = "850kg";
+        // car.color = "white";
+        // car.text = 5000;
+
+        // console.log(car);
+
+        // let x = "Taner";
+
+        // console.log(x[0]);
+
+        const person = {
+            firstName: "Ahmet",
+            lastName: "Saydam",
+            age: 33,
+            id: 5566,
+            name: function(){
+                return this.firstName + " " + this.lastName
+            }
+        }
+
+        console.log(person.name());
+    </script>
+</body>
+</html>

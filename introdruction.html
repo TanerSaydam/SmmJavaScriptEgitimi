@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="demo">Merhaba!</h1>
+
+    <!-- Mevcut bir elementin attribute'ünü değiştirebiliyorduk -->
+    <input id="inputTxt" type="file">
+    <button onclick="document.getElementById('inputTxt').type='file'">İnput Elementinin Type'ını File Yap</button>
+    <button onclick="document.getElementById('inputTxt').type='text'">İnput Elementinin Type'ını Text Yap</button>    
+<br>
+<br>
+<br>
+    <span id="span">Lorem, ipsum.</span>
+    <script>
+        //Mevcut bir elementin içeriğini değiştirebiliyorum
+        document.getElementById("demo").innerHTML = "Hello World!"
+
+
+        //Mevcur bir elementin style'ını değiştirebiliyoruz.
+        document.getElementById("span").style.fontWeight = 100;
+
+    </script>
+</body>
+</html>
