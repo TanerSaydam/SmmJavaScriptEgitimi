@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <title>Api Örneği 1</title>
+</head>
+<body>
+
+    <button>Api İsteği Yap</button>
+    <div id="root"></div>
+    
+    <script>
+
+        document.querySelector("button").onclick=apiIstegiYap;
+
+
+         let x = 0;        
+
+        function apiIstegiYap(){
+            if(x < 3){
+                api();
+            }else{
+                alert("10 saniye içerisinde sadece 3 istek yapabilirsiniz");
+                document.getElementById("root").innerHTML = "";
+            }
+        }
+
+
+        let interval = setInterval(()=> {
+            x = 0;
+        },10000)
+
+        //interval.clearInterval();
+
+        let text = "";
+        function api(){
+x++;
+            fetch("https://jsonplaceholder.typicode.com/todos")
+                .then(res=> res.json())
+                .then(data=> {
+                    text = "<ul>";
+
+                        for(let x in data){
+                            text += "<li>" + data[x].title + "</li>"
+                        }
+
+                        text += "</ul>"
+
+                        document.getElementById("root").innerHTML = text;                    
+                })
+
+             
+        }
+       
+    </script>
+</body>
+</html>

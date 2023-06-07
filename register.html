@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Register</title>
+</head>
+<body>
+    <h1>Register</h1>
+
+    <div>
+        UserName
+        <input onkeyup="setProperty('userName',event)">
+    </div>
+    <div>
+        Name
+        <input onkeyup="setProperty('name',event)">
+    </div>
+    <div>
+        Email
+        <input onkeyup="setProperty('email',event)">
+    </div>
+    <div>
+        Kullanıcı resmi
+        <input type="file" multiple onchange="setFiles(event)">
+    </div>
+    <button onclick="save()">Kayıt Ol</button>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script>
+        let user = {
+            userName: "",
+            name: "",
+            email: ""
+        }
+
+        let files;
+
+        function setFiles(event){
+            files = event.target.files
+        }
+       
+        // document.querySelector("button").onclick = function(){
+        //     console.log(user);
+        // }
+
+        function setProperty(propertyName, event){
+            user[propertyName] =  event.target.value
+        }
+
+        let name = "Taner Saydam";
+
+        function save(){            
+            // fetch("https://jsonplaceholder.typicode.com/users?name=taner saydam",{
+            //     method: "POST",
+            //     body: JSON.stringify(user),
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // })
+            // .then(res=> res.json())
+            // .then(data => console.log(data));
+          
+
+            let formData = new FormData();
+            formData.append("name",user.name);
+            formData.append("email",user.email);
+            formData.append("userName",user.userName);
+            for(let x in files){                
+                if(x == files.length -1) break;               
+                
+                formData.append("files",files[x], files[x].name);
+            }
+
+            axios.post("https://jsonplaceholder.typicode.com/users", formData)
+                .then(res=> {
+                    console.log(res.data);
+                })
+            
+        }
+    </script>
+</body>
+</html>
