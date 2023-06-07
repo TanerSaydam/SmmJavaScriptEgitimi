@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <title>Fetch => Api İstekleri</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td{
+            border: 1px solid;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch Api İstekleri</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>UserId</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        function getById(){
+            fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            let inputElement1 = document.createElement("input");
+
+            inputElement1.value = data.userId;
+
+            let inputElement2 = document.createElement("input");
+
+            inputElement2.value = data.id;
+
+            let inputElement3 = document.createElement("input");
+
+            inputElement3.value = data.title;
+
+            
+            let inputElement4 = document.createElement("input");
+
+            inputElement4.value = data.completed
+
+            document.querySelector("body").append(inputElement1,inputElement2,inputElement3,inputElement4);
+
+        });
+        }
+    
+        getLis();
+        function getLis(){
+           fetch("https://jsonplaceholder.typicode.com/todos")
+           .then(res=> res.json())
+           .then(data=> {
+                for(let x in data){
+                    let trElement = document.createElement("tr");
+
+                    //Index
+                    let tdElement1 = document.createElement("td");
+                    tdElement1.innerText = (+x)+1;
+
+                    //UserId
+                    let tdElement2 = document.createElement("td");
+                    tdElement2.innerText = data[x].userId;
+
+                    //Id
+                    let tdElement3 = document.createElement("td");
+                    tdElement3.innerText = data[x].id;
+
+                     //Title
+                     let tdElement4 = document.createElement("td");
+                    tdElement4.innerText = data[x].title;
+
+                    trElement.append(tdElement1,tdElement2,tdElement3, tdElement4);
+
+                    //Completed
+                    let tdElement5 = document.createElement("td");
+                    tdElement5.innerText = (data[x].completed ? "Aktif": 'Pasif' ); //ternary operatorü || single if line
+                    if(data[x].completed) tdElement5.style.color = "green";
+                    else tdElement5.style.color = "red";
+
+                    trElement.append(tdElement1,tdElement2,tdElement3, tdElement4, tdElement5);
+
+
+                    document.querySelector("table tbody").append(trElement);
+                }
+
+           })
+        }
+    </script>
+</body>
+</html>
