@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,37 +8,38 @@
     <title>My Blog</title>
 
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
 
-        nav{
+        nav {
             display: flex;
             justify-content: space-between;
             background: #ccc;
             padding: 10px;
         }
 
-        nav ul{
+        nav ul {
             display: flex;
             list-style: none;
             gap: 6px;
         }
 
-        nav ul li a{
+        nav ul li a {
             text-decoration: none;
             color: #192526;
             padding: 5px;
         }
 
-        nav ul li a:hover{
+        nav ul li a:hover {
             background-color: #192526;
             color: white;
         }
     </style>
 </head>
+
 <body>
     <h1>My Blog Page</h1>
 
@@ -45,21 +47,26 @@
         <h1>Logo</h1>
         <ul>
             <li>
-                <a onclick="anaSayfayaGit()">Ana Sayfa</a>
+                <a onclick="routing(event)" data-route="anasayfa">Ana Sayfa</a>
             </li>
             <li>
-                <a onclick="yeteneklerSayfasinaGit()">Yetenekler</a>
+                <a onclick="routing(event)" data-route="yetenekler">Yetenekler</a>
             </li>
             <li>
-                <a onclick="iletisimSayfasinaGit()">İletişim</a>
+                <a onclick="routing(event)" data-route="iletisim">İletişim</a>
             </li>
         </ul>
     </nav>
-    
+
+
+
     <div id="root"></div>
 
-   <script>
-    let homePage = `
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+
+    <script>
+
+        let homePage = `
     <section>
         <h2>Hakkımda</h2>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus perspiciatis quia fuga modi iusto quos neque non velit ipsum fugiat, a deleniti natus ex obcaecati in? Earum odit odio at.</p>
@@ -74,16 +81,8 @@
     </section>    
     `
 
-    anaSayfayaGit();
 
-    function anaSayfayaGit(){
-        document.getElementById("root").innerHTML = homePage;
-    }
-
-    
-
-
-    let yeteneklerPage = `
+        let yeteneklerPage = `
     <section>
     <h2>Yetenek Sayfası</h2>
     <div>
@@ -103,7 +102,7 @@
 </section>`
 
 
-let iletisimPage = `
+        let iletisimPage = `
 <section>
         <h2>İletişim Sayfası</h2>
         <form action="">
@@ -126,13 +125,85 @@ let iletisimPage = `
     </section>`
 
 
-    function yeteneklerSayfasinaGit(){
-        document.getElementById("root").innerHTML = yeteneklerPage;
-    }
+        document.getElementById("root").innerHTML = homePage;
 
-    function iletisimSayfasinaGit(){
-        document.getElementById("root").innerHTML = iletisimPage;
-    }
-   </script>
+
+        function routing(event) {
+            console.log(event);
+            let route = event.target.dataset.route;
+
+            if (route == "yetenekler") {
+                document.getElementById("root").innerHTML = "<h1 style='text-align:center;'>Yükleniyor...</h1>"
+                
+                let text = "";
+
+                setTimeout(()=> {
+                    // fetch("https://jsonplaceholder.typicode.com/todos")
+                    // .then(res=> res.json())
+                    // .then(data=> {
+                    //     text += "<ul>";
+
+                    //     for(let x in data){
+                    //         text += "<li>" + data[x].title + "</li>"
+                    //     }
+
+                    //     text += "</ul>"
+
+                    //     document.getElementById("root").innerHTML = text;
+                    // });
+
+                    // let data = {
+                    //     userName: "",
+                    //     password: ""
+                    // }
+
+                    // fetch("api",{
+                    //     method:"post",
+                    //     data: JSON.stringify(data),                        
+                    // }).then(res=> res.json())
+                    // .then(data=> {
+                    //     console.log(data);
+                    // })
+
+                    axios.get("https://jsonplaceh2older.typicode.com/todos")
+                        .then(res=> {
+                            console.log(res.data);
+
+                            text += "<ul>";
+
+                            for(let x in res.data){
+                                text += "<li>" + res.data[x].title + "</li>"
+                            }
+
+                            text += "</ul>"
+
+                            document.getElementById("root").innerHTML = text;
+                        })
+                        .catch(err => {
+                           alert(err.message);
+                        })
+                
+
+                    // axios.post("api", data)
+                    // .then(data=> {
+                    //         console.log(data)
+                    //     })
+                },1000)
+                
+            } else if (route == "iletisim") {
+                document.getElementById("root").innerHTML = iletisimPage;
+            } else if (route == "anasayfa") {
+                document.getElementById("root").innerHTML = homePage;
+            }
+        }
+
+
+
+
+
+
+
+    </script>
 </body>
+
 </html>
