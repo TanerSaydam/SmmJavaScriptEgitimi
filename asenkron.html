@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <title>Asenkron Programlama</title>
+</head>
+<body>
+    <h1>Asenkron | Senkron | Async | Await</h1>
+
+    <!-- 
+        iş 1: 10sn
+        iş 2: 5sn
+        iş 3: 1sn
+
+
+        senkron = 16sn
+
+        asenkron : 10sn
+     -->
+
+     <script>
+
+        function promise(){
+            return  new Promise((res)=> {
+                setTimeout(()=>{
+            console.log("Salı");            
+            res();
+        },2000)
+            
+        })
+        }
+        console.log("Pazartesi");
+        promise().then((res)=> {
+            res
+            console.log("çarşamba")
+        });
+               
+        
+     </script>
+</body>
+</html>

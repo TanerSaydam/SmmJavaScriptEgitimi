@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>    
+    <title>Dünün Tekrarı 1</title>
+    <style>
+        body{
+            /*Elementin adına göre / tagına göre seçme*/
+        }
+
+        #id{
+            /*id'sine göre ulaşma*/
+        }
+
+        .class{
+            /*classına göre ulaşma*/
+        }
+
+        div p h1 span{
+            /*Combinator*/
+        }
+    </style>
+</head>
+<body>
+    <h1>Dünün Tekrarı 1</h1>
+    <button>Element Ekle</button>    
+    <button id="writeBtn">Input değerlerini console'a yaz</button>
+<!-- 
+    <div>
+        <p>
+            <h1>
+                <span></span>
+            </h1>
+        </p>
+    </div> -->
+
+    <script>
+
+        // document.querySelector("button").onclick = elementEkle;
+
+        document.querySelector("button").addEventListener("click", elementEkle);       
+
+        document.querySelector("#writeBtn").addEventListener("click",inputDegerleriniYakala);
+
+        let id = 0;
+
+        let style = {                
+                color: "black",
+                fontSize: "18px",
+                border: "1px solid red",
+                width: "70%",
+                marginTop: "5px",                
+            }
+        
+            let elementProperties = {
+                placeHolder: "Aranacak değer"                
+            }
+            
+        function elementEkle(){
+            
+
+           let element = document.createElement("input");
+            
+
+          Object.assign(element,elementProperties);
+          Object.assign(element.style,style);
+
+          element.id = "input-" + id;
+          element.placeholder = "Aranacak değer...";
+          element.className = "input"
+          element.type = "file";
+
+          let buttonElement = document.createElement("button");
+
+          buttonElement.innerText = "Sil"
+          buttonElement.id = "button-" + id;
+
+          buttonElement.addEventListener("click", elementSil)
+
+          id++;
+
+           document.querySelector("body").append(element, buttonElement);
+        }
+       
+
+        function elementSil(event){            
+            let btnId = event.target.id;
+            let inputId = btnId.replace("button-","input-");
+
+            document.getElementById(inputId).remove();
+            document.getElementById(btnId).remove();
+        }
+
+
+        function inputDegerleriniYakala(){
+            let listInputElement = document.getElementsByClassName("input");
+
+            for(var x in listInputElement){
+                console.log(listInputElement[x].files[0]);
+            }
+        }
+
+    </script>
+</body>
+</html>
