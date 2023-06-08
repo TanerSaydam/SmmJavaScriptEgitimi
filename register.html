@@ -54,24 +54,35 @@
             //     method: "POST",
             //     body: JSON.stringify(user),
             //     headers: {
-            //         'Content-Type': 'application/json'
+            //         'Content-Type': 'application/json',
+            //         "Authorization": "Bearer asdasdasd"
             //     }
             // })
             // .then(res=> res.json())
-            // .then(data => console.log(data));
+            // .then(data => {
+            //     localStorage.setItem("token",JSON.stringify(data));
+            // });
           
 
-            let formData = new FormData();
-            formData.append("name",user.name);
-            formData.append("email",user.email);
-            formData.append("userName",user.userName);
-            for(let x in files){                
-                if(x == files.length -1) break;               
-                
-                formData.append("files",files[x], files[x].name);
-            }
+            // let token = localStorage.getItem("token");
 
-            axios.post("https://jsonplaceholder.typicode.com/users", formData)
+            // token = JSON.parse(token);
+
+            // let formData = new FormData();
+            // formData.append("name",user.name);
+            // formData.append("email",user.email);
+            // formData.append("userName",user.userName);
+            // for(let x in files){                
+            //     if(x == files.length -1) break;               
+                
+            //     formData.append("files",files[x], files[x].name);
+            // }
+
+            axios.post("https://jsonplaceholder.typicode.com/users", user,{
+                headers: {
+                    "Authorization": "Bearer tasdasd"
+                }
+            })
                 .then(res=> {
                     console.log(res.data);
                 })
